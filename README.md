@@ -1,3 +1,3 @@
 # appventurez
 
-Here example of all the basic Javascript. 
+Here examples of all the basic Javascript. 
