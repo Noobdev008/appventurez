@@ -8,19 +8,19 @@
 // Input: [17, 19, 21] Output: 9
 // Input: [5, 5, 5] Output: 15
 
-let arr = [17,19,21]
+let arr = [5,5,5]
 function num(arr) {
     let sum1 = 0
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] % 2 == 0) {
-           sum1+=1
-        }else if(arr[i]%2!=0 && arr[i]!=5){
-            sum1+=3
-        }else if(arr[i]==5){
-            sum1+=5
-        }else if(arr[i]==0){
-            sum1+=1
-        }
+    let i =0 ;
+    while(i<arr.length){
+        if (arr[i] % 2 == 0 ||arr[i]==0) {
+            sum1+=1;
+         }else if(arr[i]%2!=0 && arr[i]!=5){
+             sum1+=3
+         }else if(arr[i]==5){
+             sum1+=5
+         }
+         i++
     }
 
     console.log(sum1)
