@@ -1,0 +1,7 @@
+How to run this project?
+
+
+First copy the code in your local system
+After copy, open in editor and Use npm intsall
+Npm install it automatically update all the dependencies and you can run after installing.
+Then use node index.js 
