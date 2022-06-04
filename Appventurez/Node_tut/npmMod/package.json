@@ -1,0 +1,16 @@
+{
+  "name": "npmmod",
+  "version": "1.0.0",
+  "description": "node tut",
+  "main": "index.js",
+  "scripts": {
+    "start": "index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shubham-srivastava",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.0.1",
+    "give-me-a-joke": "^0.5.1"
+  }
+}
