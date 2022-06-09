@@ -10,4 +10,4 @@
 //     // setter, the code executed on setting obj.propName = value
 //   }
 // };
-// The getter works when obj.propName is read, the setter – when it is assigned.
+// The getter works when obj.propName is read, the setter – when it is assigned..
