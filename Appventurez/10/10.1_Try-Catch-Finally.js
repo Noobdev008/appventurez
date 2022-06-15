@@ -36,12 +36,12 @@
 
 function f() {
   try {
-    alert('start');
+    console.log('start');
     return "result";
   } catch (err) {
     /// ...
   } finally {
-    alert('cleanup!');
+    console.log('cleanup!');
   }
 }
 
@@ -50,7 +50,7 @@ f(); // cleanup!
 
 function f() {
   try {
-    alert('start');
+    console.log('start');
     throw new Error("an error");
   } catch (err) {
     // ...
@@ -59,7 +59,7 @@ function f() {
     }
 
   } finally {
-    alert('cleanup!')
+    console.log('cleanup!')
   }
 }
 

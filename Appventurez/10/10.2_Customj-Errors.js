@@ -8,12 +8,12 @@
 
 // let err = new FormatError("formatting error");
 
-// alert( err.message ); // formatting error
-// alert( err.name ); // FormatError
-// alert( err.stack ); // stack
+// console.log( err.message ); // formatting error
+// console.log( err.name ); // FormatError
+// console.log( err.stack ); // stack
 
-// alert( err instanceof FormatError ); // true
-// alert( err instanceof SyntaxError ); // true (because inherits from SyntaxError)
+// console.log( err instanceof FormatError ); // true
+// console.log( err instanceof SyntaxError ); // true (because inherits from SyntaxError)
 
 
 class FormatError extends SyntaxError {
