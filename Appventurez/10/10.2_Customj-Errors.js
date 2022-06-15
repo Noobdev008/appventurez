@@ -2,7 +2,7 @@
 // importance: 5
 // Create a class FormatError that inherits from the built-in SyntaxError class.
 
-// It should support message, name and stack properties.
+// It should support message, name and stack properties.  
 
 // Usage example:
 
