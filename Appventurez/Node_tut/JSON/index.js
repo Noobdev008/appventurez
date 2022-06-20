@@ -15,6 +15,7 @@ const jsonData = JSON.stringify(bioData); // convert to json
 //  console.log("done");
 // })
 
+
 fs.readFile('json1.json','utf-8',(err,data)=>{
 //   console.log(data);
 const orgData = JSON.parse(data); // convert to OBJ
