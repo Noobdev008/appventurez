@@ -1,0 +1,54 @@
+ANS 1 - Select first_name, last_name, job_id  salary from employees where first_name LIKE 's%';
+
+ANS 2 - SELECT MAX(salary) from employees
+
+ANS 3- select * from employees group by salary  order by  salary desc limit 1,1; 
+
+ANS 4 - SELECT * FROM employees WHERE salary = (SELECT DISTINCT salary FROM employees ORDER BY salary DESC LIMIT 1,1) OR salary= (SELECT DISTINCT salary FROM employees ORDER BY salary DESC LIMIT 2,1)
+
+Ans 5 - SELECT employee_id,first_name,last_name, manager_id, salary FROM employees;
+
+ANS 6- SELECT w.manager_id,
+       count(*)
+      FROM employees w,
+      employees m
+      WHERE w.manager_id = m.employee_id
+      GROUP BY w.manager_id
+      ORDER BY w.manager_id ASC;
+
+
+ANS 7- SELECT department_id, COUNT(*)
+  FROM employees
+  GROUP BY department_id;
+
+
+
+ANS 8- SELECT extract(year from hire_date) Year, COUNT(*) total_employee 
+FROM employees
+GROUP BY extract(year from hire_date);
+
+
+ANS 9 - SELECT MAX(salary), MIN(salary), AVG(salary)  from employees ;
+
+
+ANS 10 - SELECT first_name
+FROM employees
+WHERE first_name LIKE '%an%'
+
+
+ANS 11 - SELECT  employee_id, first_name, last_name, salary from employees where salary >(SELECT AVG(salary) from employees);
+
+
+ANS 12 -SELECT department_id, MAX(SALARY) FROM employees GROUP BY department_id;
+
+
+ANS 13- SELECT *
+FROM employees e
+WHERE 5>
+    (SELECT count(*)
+     FROM employees
+     WHERE e.salary >salary);
+
+
+ANS 14 - SELECT * FROM employees
+WHERE hire_date BETWEEN '1980-01-01' AND '1989-12-31';
