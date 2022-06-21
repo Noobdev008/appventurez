@@ -1,7 +1,7 @@
 // Node.js has a built-in module, called "Events",
 // where you can create-, fire-, and listen for- your own events
 
-const { ok } = require('assert');
+// const { ok } = require('assert');
 const EventEmmiter = require('events')
 
 const event = new EventEmmiter();
