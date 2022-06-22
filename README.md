@@ -1,4 +1,6 @@
 # appventurez
 
-Here examples of all the basic Javascript. Completeted till 12.2
+Here examples of all the basic Javascript. 
+Javascript Completetd
+
 
