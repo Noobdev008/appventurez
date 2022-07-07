@@ -1,0 +1,10 @@
+Joins 
+
+
+select * from customers,
+JOIN ords ON customers.cid=ords.cid;  ---> inner join
+
+
+select customers.cid,cname,amount from customers left join ords on customers.cid = ords.cid; ---> left join 
+
+ select customers.cid , cname,amount from customers right join ords on customers.cid = ords.cid;  ---> right join
