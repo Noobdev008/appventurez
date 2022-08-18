@@ -164,20 +164,24 @@ module.exports = {
                 });
             }
             // console.log(results.Password+ " results");
-            console.log(body.Password + " password");
-            body.Password = bcrypt.hashSync(body.Password, 10);
-            console.log(body.Password + " password2");
-        
-            const result = bcrypt.compareSync(body.Password,results.Password);
-            console.log(result +" results");
-            if (result) {
-                results.Password = undefined;
+            // console.log(body.Password + " password");
+            // body.Password = bcrypt.hashSync(body.Password, 10);
+            // console.log(body.Password + " password2");
+            // console.log(results.Password + " results");
+            // const result = bcrypt.compareSync(body.Password,results.Password);
+            // console.log(result +" result");
+            if (results) {
+                // results.Password = undefined;
                 const jasontoken = sign({ result: results }, "SECRET_KEY", { expiresIn: "300h" });
                 updateJWT(body.Email, jasontoken,(err, results)=>{
                     if(err){
-                        console.log(err + " updateJWT failed");
+                       res.send({err:" updateJWT failed"});
                     }
-                    console.log(results+" updateJWT successful");
+                    res.send({
+                        login:"Login Sucessfully",
+                        token: jasontoken
+                        
+                    });
                 })
             }else{
                 return res.json({

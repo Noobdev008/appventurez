@@ -31,7 +31,7 @@ module.exports = {
 
     isUser: (req, res, next) => {
         console.log(res.locals.type);
-        if (res.locals.type == 'user') {
+        if (res.locals.type == 'user' || res.locals.type == undefined) {
             next();
         }
         else {
@@ -40,14 +40,12 @@ module.exports = {
     },
     isAdmin: (req, res, next) => {
         console.log(res.locals.type + " is admin");
-        if (res.locals.type == 'admin' || res.locals.type == 'user') {
+        if (res.locals.type == 'admin' || res.locals.type == 'user' || res.locals.type == undefined) {
             next();
         }
         else {
             res.send("You don't have the authorization");
         }
-    },
-    
-
+    }, 
 }
 

@@ -135,10 +135,10 @@ module.exports = {
         )
     },
     getUserByEmail: (email, callback) => {
-        pool.query(`SELECT * FROM user where Email = ?`,email,
+        pool.query(`SELECT * FROM user where Email = ?`,[email],
             (err, result, fields) => {
                 if (err) return callback(err);
-                console.log(result[0].Email + " emailResult");
+                // console.log(result[0].Email+" "+result[0].Password + " emailResult");
                 return callback(null, result[0]);
             }
         )
