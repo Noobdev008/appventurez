@@ -190,7 +190,7 @@ module.exports = {
     userLogout: async (req, res) => {
         try {
             const token = '';
-            // await create(token);
+            await create(token);
             res.send("User Lougout Sucessfully");
         } catch (err) {
             console.log(err);

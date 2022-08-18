@@ -30,7 +30,7 @@ module.exports = {
     },
 
     isUser: (req, res, next) => {
-        // console.log(res.locals.type);
+        console.log(res.locals.type);
         if (res.locals.type == 'user') {
             next();
         }
@@ -39,8 +39,8 @@ module.exports = {
         }
     },
     isAdmin: (req, res, next) => {
-        // console.log(res.locals + " is admin");
-        if (res.locals.type == 'admin') {
+        console.log(res.locals.type + " is admin");
+        if (res.locals.type == 'admin' || res.locals.type == 'user') {
             next();
         }
         else {
