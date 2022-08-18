@@ -9,15 +9,16 @@ module.exports = {
             `INSERT INTO user(Name,Email,JWT) VALUES (?,?,?)`,
             [data.Name, data.Email, data.JWT],
             (err, res) => {
-                console.log(res);
+                // console.log(res);
                 if (err) {
                     return callback(err, null);
                 }
                 else {
                     pool.query(
-                        `INSERT INTO auth(Password,Email, UserID) VALUES (?,?,?)`,
+                        `INSERT INTO auth(Password,Email,UserID) VALUES (?,?,?)`,
                         [data.Password, data.Email, res.insertId],
                         (err, res) => {
+                            // console.log(res);
                             if (err) {
                                 return callback(err, null);
                             }
@@ -32,9 +33,9 @@ module.exports = {
     createAdmin: (data, callback) => {
         pool.query(
             `INSERT INTO user(Name,Email,UserType,JWT) VALUES (?,?,?,?)`,
-            [data.Name, data.Email,data.UserType, data.JWT],
+            [data.Name, data.Email, data.UserType, data.JWT],
             (err, res) => {
-                console.log(res);
+                // console.log(res);
                 if (err) {
                     return callback(err, null);
                 }
@@ -81,7 +82,7 @@ module.exports = {
         // pool.query(`SELECT * FROM user where id = ${data.id}`, (err, results) => {
         //     oldEmail = results[0].Email;
         // })
-        console.log(data+" data");
+        // console.log(data + " data");
         pool.query(`UPDATE User set Name=?,Email=? where ID = ?`,
             [
                 data.Name,
@@ -90,7 +91,7 @@ module.exports = {
             ],
             (err, results) => {
                 if (err) {
-                    callback(err, null); 
+                    callback(err, null);
                 } else {
                     // console.log(data.Password);
                     pool.query(`UPDATE Auth set Password =? where UserID = ?`,
@@ -117,7 +118,7 @@ module.exports = {
         pool.query(`delete from user where id=?`,
             [data.id],
             (err, results) => {
-                console.log(results + " deleted")
+                // console.log(results + " deleted")
                 if (err) {
                     return callback(err);
                 }
@@ -135,7 +136,7 @@ module.exports = {
         )
     },
     getUserByEmail: (email, callback) => {
-        pool.query(`SELECT * FROM user where Email = ?`,[email],
+        pool.query(`SELECT * FROM user where Email = ?`, [email],
             (err, result, fields) => {
                 if (err) return callback(err);
                 // console.log(result[0].Email+" "+result[0].Password + " emailResult");
@@ -143,14 +144,29 @@ module.exports = {
             }
         )
     },
-    updateJWT: (email,token, callback) => {
-        pool.query(`UPDATE user SET JWT = ? WHERE Email = ?`,[token,email],
+    updateJWT: (email, token, callback) => {
+        pool.query(`UPDATE user SET JWT = ? WHERE Email = ?`, [token, email],
             (err, result, fields) => {
                 if (err) return callback(err);
                 return callback(null, result);
             }
         )
     },
-
+    logout: (email, token, callback) => {
+        pool.query(`UPDATE user SET JWT = ? WHERE Email = ?`, [token, email],
+            (err, result, fields) => {
+                if (err) return callback(err);
+                return callback(null, result);
+            }
+        )
+    },
+    resetPassword: (password,id, callback) => {
+        pool.query(`UPDATE auth SET Password = ? WHERE ID = ?`, [password, id],
+            (err, result, fields) => {
+                if (err) return callback(err);
+                return callback(null, result);
+            }
+        )
+    },
 
 }

@@ -8,5 +8,11 @@ const pool = createPool({
     password: '',
     database:'admin_user',
 });
-
+pool.getConnection(function(err, connection) {
+    if(err){
+        console.log(err+ ' pool connection failed');
+    }else{
+        console.log('pool connection established');
+    }
+})
 module.exports =pool;  

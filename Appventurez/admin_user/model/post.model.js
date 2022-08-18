@@ -26,7 +26,7 @@ module.exports = {
         );
     },
     getPostById: (id, callback) => {
-        pool.query(`SELECT * from user inner join post on user.ID = post.userID where user.ID = ?`,
+        pool.query(`SELECT * from user inner join post on user.ID = post.UserID where post.ID = ?`,[id],
             (err, results) => {
                 if (err) {
                     return callback(err);

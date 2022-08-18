@@ -1,5 +1,4 @@
 const { verify } = require("jsonwebtoken");
-const db = require(".././config/db.config")
 
 module.exports = {
     checkToken: (req, res, next) => {
@@ -7,7 +6,7 @@ module.exports = {
         // console.log(token +" nnnnn")
         if (token) {
             token = token.slice(7);
-            console.log(token + " token")
+            // console.log(token + " token")
             verify(token, "SECRET_KEY", (err, decoded) => {
                 if (err) {
                     res.json({
@@ -30,7 +29,7 @@ module.exports = {
     },
 
     isUser: (req, res, next) => {
-        console.log(res.locals.type);
+        // console.log(res.locals.type);
         if (res.locals.type == 'user' || res.locals.type == undefined) {
             next();
         }
@@ -39,7 +38,7 @@ module.exports = {
         }
     },
     isAdmin: (req, res, next) => {
-        console.log(res.locals.type + " is admin");
+        // console.log(res.locals.type + " is admin");
         if (res.locals.type == 'admin' || res.locals.type == 'user' || res.locals.type == undefined) {
             next();
         }

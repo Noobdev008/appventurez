@@ -7,6 +7,7 @@ const {
     deleteUser,
     userLogout,
     login,
+    resetPassword,
 }= require('.././controller/user.controller');
 
 const router = require('express').Router();
@@ -15,6 +16,7 @@ const {checkToken, isAdmin,isUser} = require('.././token_validation/token_valida
 router.post('/user', createUser);
 router.post('/admin', createAdmin);
 router.post('/user/login', login);
+router.post('/user/users/reset', resetPassword);
 router.get('/user',checkToken,isAdmin, getUser);
 router.get('/user/:id',checkToken, getUserById);
 router.get('/user/users/logout',userLogout)
