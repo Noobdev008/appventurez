@@ -10,8 +10,8 @@ var topic = 'general';
 
 var message = {
   notification: {
-    title: 'Message from Brazzers',
-    body: `Hey Sexy!`
+    title: '',
+    body: ``
   },
   topic: topic
 };
