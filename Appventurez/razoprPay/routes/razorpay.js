@@ -1,43 +1,56 @@
 const express = require('express');
 const router = express.Router();
 const Razorpay = require('razorpay');
+let db = require('../db/db.config')
 
-const instance =new Razorpay({
+const Payments = db.payment
+const instance = new Razorpay({
     key_id: '',
-    key_secret:''
+    key_secret: ''
 });
+let orderNumber;
 
 router.get('/', (req, res) => {
+    console.log(req.body, " get");
     var options = {
         amount: 600,
         currency: 'INR',
     };
-    instance.orders.create(options, function (err, order) {
+    instance.orders.create(options, async function (err, order) {
         if (err) {
             console.log(err);
         } else {
-            console.log(order.id , "order");
-            res.render('./checkout.ejs', {amount: order.amount, order_id: order.id});
+            console.log(order, "order");
+            // orderNumber = order.id;
+
+            res.render('./checkout.ejs', { amount: order.amount, order_id: order.id });
         }
     });
 });
 
 
-router.post('/pay-verify',(req,res) => {
-    console.log(req.body , "body");
-    body=req.body.razorpay_order_id + "|" + req.body.razorpay_payment_id;
+router.post('/pay-verify', async (req, res) => {
+    console.log(req.body, "body");
+    // console.log(orderNumber, "orderNumber");
+let pid = req.body.razorpay_payment_id;
+orderNumber  = req.body.razorpay_order_id
+    body = req.body.razorpay_order_id + "|" + req.body.razorpay_payment_id;
     var crypto = require("crypto");
     var expectedSignature = crypto.createHmac('sha256', '')
-                                    .update(body.toString())
-                                    .digest('hex');
-                                    console.log("sig"+req.body.razorpay_signature);
-                                    console.log("sig"+expectedSignature);
-    
-    if(expectedSignature === req.body.razorpay_signature){
-      console.log("Payment Success");
-    }else{
-      console.log("Payment Fail");
+        .update(body.toString())
+        .digest('hex');
+    // console.log("sig"+req.body.razorpay_signature);
+    // console.log("sig"+expectedSignature);
+
+    let sign = req.body.razorpay_signature
+    if (expectedSignature === req.body.razorpay_signature) {
+
+        let data = await Payments.create({ orderid: orderNumber, rsignature:sign , rpaymentid:pid ,payment :6,success:1 })
+        console.log(data, 'data0');
+        console.log("Payment Success");
+    } else {
+        console.log("Payment Fail");
     }
-  })
+})
 
 module.exports = router;
